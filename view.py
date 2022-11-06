@@ -1,3 +1,4 @@
+'''
 async def printField(update, game_field: list, name: str):
      await update.message.reply_text(f'{game_field[0]:^5}|{game_field[1]:^5}|{game_field[2]:^5}')
      await update.message.reply_text(f'-----------------')
@@ -28,4 +29,6 @@ async def start_game(update):
 
 async def player_take(update, name: str):
     await update.message.reply_text(f'{name} делайте ваш ход: ')
+'''
+
 
