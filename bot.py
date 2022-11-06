@@ -1,3 +1,5 @@
+'''
+
 import random
 
 
@@ -27,3 +29,16 @@ async def AIMove(field: list, player_field: list, enemy_field: list, win: list):
         move = random.randint(0,9)
         if (0 < move < 10) and field[move].isdigit():
             return move
+'''
+
+import random
+import model
+
+def AIMove(field: list):
+    if field[4] == model.SYMBOL_UNDEF:
+        return 4
+    corner = [0,2,6,8]
+    random.shuffle(corner)
+    for pos in corner:
+        if field[pos] == model.SYMBOL_UNDEF:
+            return pos
