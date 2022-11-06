@@ -1,3 +1,4 @@
+'''
 import random
 
 game_field = ['1','2','3','4','5','6','7','8','9']
@@ -70,3 +71,42 @@ async def win_condition(field: list):
     for move in win:
         if field[move[0]] == field[move[1]] == field[move[2]] == 1:
             return True
+'''
+
+
+# символы, которые используются
+SYMBOL_X = '❌'
+SYMBOL_O = '⭕'
+SYMBOL_UNDEF = '◻'
+
+# ответы бота
+ANSW_YOUR_TURN = 'Ваш ход'
+ANSW_YOU_WIN = 'Вы победили'
+ANSW_BOT_WIN = 'Победил бот'
+ANSW_DRAW = 'Ничья'
+ANSW_HELP = 'Бот для игры в крестики-нолики' \
+            'Используйте команду /new_game для начала новой игры'
+
+# ошибки
+ALERT_CANNOT_MOVE_TO_THIS_CELL = 'Нажимать можно только на ' + SYMBOL_UNDEF
+
+
+async def isWin(arr, symbol):
+    if (((arr[0] == symbol) and (arr[4] == symbol) and (arr[8] == symbol)) or
+            ((arr[2] == symbol) and (arr[4] == symbol) and (arr[6] == symbol)) or
+            ((arr[0] == symbol) and (arr[1] == symbol) and (arr[2] == symbol)) or
+            ((arr[3] == symbol) and (arr[4] == symbol) and (arr[5] == symbol)) or
+            ((arr[6] == symbol) and (arr[7] == symbol) and (arr[8] == symbol)) or
+            ((arr[0] == symbol) and (arr[3] == symbol) and (arr[6] == symbol)) or
+            ((arr[1] == symbol) and (arr[4] == symbol) and (arr[7] == symbol)) or
+            ((arr[2] == symbol) and (arr[5] == symbol) and (arr[8] == symbol))):
+        return True
+    return False
+
+
+async def getCountUndefinedCells(cellArray):
+    counter = 0
+    for i in cellArray:
+        if i == SYMBOL_UNDEF:
+            counter += 1
+    return counter
